@@ -1,172 +1,582 @@
-
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пропозиція — Маркетингова стратегія під ключ</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  .wrap { padding: 2rem 1rem; max-width: 680px; font-family: var(--font-sans); }
-  .hero { text-align: center; margin-bottom: 2rem; }
-  .hero-tag { display: inline-block; background: #E8F5E0; color: #3B6D11; font-size: 12px; font-weight: 500; padding: 4px 14px; border-radius: 20px; margin-bottom: 0.75rem; letter-spacing: 0.04em; }
-  .hero h1 { font-size: 22px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.4rem; }
-  .hero p { font-size: 14px; color: var(--color-text-secondary); }
-  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); overflow: hidden; }
-  .card.featured { border: 2px solid #A3C97A; }
-  .card-head { padding: 1.25rem 1.25rem 1rem; border-bottom: 0.5px solid var(--color-border-tertiary); position: relative; }
-  .badge-pop { position: absolute; top: 14px; right: 14px; background: #EAF3DE; color: #3B6D11; font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
-  .badge-base { position: absolute; top: 14px; right: 14px; background: var(--color-background-secondary); color: var(--color-text-secondary); font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; }
-  .plan-icon { font-size: 28px; margin-bottom: 0.5rem; display: block; }
-  .plan-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); margin-bottom: 0.25rem; }
-  .plan-sub { font-size: 13px; color: var(--color-text-secondary); }
-  .price-row { display: flex; align-items: baseline; gap: 6px; margin-top: 1rem; }
-  .price { font-size: 28px; font-weight: 500; color: var(--color-text-primary); }
-  .deadline { display: inline-flex; align-items: center; gap: 5px; margin-top: 8px; background: var(--color-background-secondary); border-radius: 6px; padding: 4px 10px; font-size: 12px; color: var(--color-text-secondary); }
-  .card-body { padding: 1rem 1.25rem; }
-  .acc-item { border-bottom: 0.5px solid var(--color-border-tertiary); }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --mint: #C8E6C2;
+    --mint-light: #E8F5E0;
+    --mint-mid: #A5D4A0;
+    --mint-dark: #3B6D11;
+    --lemon: #F5E642;
+    --lemon-light: #FEFCE8;
+    --lemon-mid: #ECD93A;
+    --yellow-soft: #FFF9D6;
+    --text-main: #1C2418;
+    --text-muted: #6B7A65;
+    --text-light: #9CAF94;
+    --border: #D8EDD4;
+    --bg: #F4FAF2;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #E8F7E3 0%, #FEFCE8 60%, #EEF9E8 100%);
+    padding: 3.5rem 1.5rem 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '🍋';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.07;
+    top: -20px;
+    left: -30px;
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '🌿';
+    position: absolute;
+    font-size: 100px;
+    opacity: 0.07;
+    bottom: -10px;
+    right: -20px;
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--lemon);
+    color: #4A5520;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-lemon { color: #8A7D00; }
+
+  .hero p {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .lemons-row {
+    margin-top: 1.5rem;
+    font-size: 24px;
+    letter-spacing: 6px;
+    opacity: 0.6;
+  }
+
+  /* ── GRID ── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 3rem;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  @media (max-width: 640px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 32px rgba(60, 110, 30, 0.10);
+  }
+
+  .card.featured {
+    border: 2.5px solid var(--mint-mid);
+    box-shadow: 0 4px 20px rgba(60, 110, 30, 0.08);
+  }
+
+  /* ── CARD HEAD ── */
+  .card-head {
+    padding: 1.5rem 1.5rem 1.25rem;
+    border-bottom: 1px solid #EEF6EB;
+    position: relative;
+  }
+
+  .card.featured .card-head {
+    background: linear-gradient(135deg, #EAF7E4 0%, #FEFCE8 100%);
+  }
+
+  .plan-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 12px;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+  }
+
+  .plan-badge.base {
+    background: #F0F0F0;
+    color: #888;
+  }
+
+  .plan-badge.recommended {
+    background: var(--lemon);
+    color: #4A5520;
+  }
+
+  .plan-emoji {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+  }
+
+  .plan-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 0.2rem;
+  }
+
+  .plan-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+  }
+
+  .price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .price {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -1px;
+  }
+
+  .price-currency {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .deadline-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    background: var(--mint-light);
+    border: 1px solid var(--mint);
+    border-radius: 8px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--mint-dark);
+  }
+
+  /* ── CARD BODY ── */
+  .card-body { padding: 1.25rem 1.5rem; }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+  }
+
+  /* ── ACCORDION ── */
+  .acc-item {
+    border-bottom: 1px solid #F0F7EE;
+  }
   .acc-item:last-of-type { border-bottom: none; }
-  .acc-trigger { width: 100%; background: none; border: none; padding: 0.65rem 0; display: flex; align-items: flex-start; gap: 10px; cursor: pointer; text-align: left; }
-  .dot { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .dot.green { background: #EAF3DE; }
-  .dot.green i { color: #3B6D11; font-size: 11px; }
-  .dot.yellow { background: #FFF9E6; }
-  .dot.yellow i { color: #BA7517; font-size: 11px; }
-  .acc-title { font-size: 13px; font-weight: 500; color: var(--color-text-primary); flex: 1; line-height: 1.4; }
-  .acc-arrow { font-size: 14px; color: var(--color-text-tertiary); margin-left: auto; flex-shrink: 0; margin-top: 1px; transition: transform 0.2s; }
-  .acc-arrow.open { transform: rotate(180deg); }
-  .acc-body { font-size: 12px; color: var(--color-text-secondary); line-height: 1.6; padding: 0 0 0.75rem 28px; display: none; }
+
+  .acc-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 0.7rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    text-align: left;
+    transition: opacity 0.15s;
+  }
+  .acc-trigger:hover { opacity: 0.8; }
+
+  .check-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .check-dot.green {
+    background: var(--mint-light);
+    color: var(--mint-dark);
+    border: 1.5px solid var(--mint);
+  }
+
+  .check-dot.yellow {
+    background: var(--lemon-light);
+    color: #7A6000;
+    border: 1.5px solid var(--lemon-mid);
+  }
+
+  .acc-title-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .acc-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-main);
+    line-height: 1.4;
+  }
+
+  .acc-chevron {
+    font-size: 16px;
+    color: var(--text-light);
+    transition: transform 0.22s ease;
+    flex-shrink: 0;
+  }
+
+  .acc-chevron.open { transform: rotate(180deg); }
+
+  .acc-body {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.65;
+    padding: 0 0 0.85rem 30px;
+    display: none;
+  }
   .acc-body.open { display: block; }
-  .divider { height: 0.5px; background: var(--color-border-tertiary); margin: 1rem 0; }
-  .extra-label { font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: var(--color-text-tertiary); text-transform: uppercase; margin-bottom: 0.5rem; }
-  .format-text { font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; }
-  .footer-note { margin-top: 1.5rem; text-align: center; font-size: 13px; color: var(--color-text-secondary); background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 0.75rem 1rem; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: #EEF6EB;
+    margin: 1rem 0;
+  }
+
+  .format-block {
+    background: var(--mint-light);
+    border: 1px solid var(--mint);
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    font-size: 13px;
+    color: var(--mint-dark);
+    line-height: 1.55;
+  }
+
+  /* ── CTA BUTTON ── */
+  .cta-btn {
+    display: block;
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 14px 20px;
+    border-radius: 14px;
+    border: none;
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+    letter-spacing: 0.01em;
+  }
+
+  .cta-btn.base {
+    background: var(--mint-light);
+    color: var(--mint-dark);
+    border: 2px solid var(--mint-mid);
+  }
+
+  .cta-btn.base:hover {
+    background: var(--mint);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(60, 110, 30, 0.15);
+  }
+
+  .cta-btn.featured-btn {
+    background: var(--lemon);
+    color: #3A4E10;
+    border: 2px solid var(--lemon-mid);
+  }
+
+  .cta-btn.featured-btn:hover {
+    filter: brightness(0.96);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 18px rgba(200, 180, 0, 0.22);
+  }
+
+  .cta-btn:active { transform: scale(0.98); }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 2rem;
+    text-align: center;
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .footer strong {
+    color: var(--text-main);
+  }
+
+  .footer-emoji {
+    font-size: 20px;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
 </style>
+</head>
+<body>
 
-<div class="wrap">
-  <div class="hero">
-    <span class="hero-tag">Пропозиція для Лесі Костів</span>
-    <h1>Маркетингова стратегія під ключ</h1>
-    <p>Два варіанти — обери той, що підходить</p>
-  </div>
+<div class="hero">
+  <div class="hero-tag">Пропозиція для Лесі Костів</div>
+  <h1>Маркетингова стратегія<br><span class="hero-lemon">під ключ</span></h1>
+  <p>Два варіанти — обери той, що підходить під твій запит і темп</p>
+  <div class="lemons-row">🍋 🌿 🍋</div>
+</div>
 
-  <div class="cards">
+<div class="container">
+  <div class="cards-grid">
 
+    <!-- ВАРІАНТ 1 -->
     <div class="card">
       <div class="card-head">
-        <span class="badge-base">База</span>
-        <span class="plan-icon">🍋</span>
+        <span class="plan-badge base">База</span>
+        <span class="plan-emoji">🍋</span>
         <div class="plan-name">Варіант 1</div>
         <div class="plan-sub">Стратегія під ключ</div>
-        <div class="price-row"><span class="price">$700</span></div>
-        <div class="deadline"><i class="ti ti-calendar" aria-hidden="true"></i> до 2 липня · 14 днів</div>
+        <div class="price-block">
+          <span class="price-currency">$</span>
+          <span class="price">700</span>
+        </div>
+        <div class="deadline-tag">
+          📅 до 2 липня · 14 робочих днів
+        </div>
       </div>
+
       <div class="card-body">
+        <div class="section-label">Що входить</div>
 
         <div class="acc-item">
           <button class="acc-trigger" onclick="toggle(this)">
-            <div class="dot green"><i class="ti ti-check"></i></div>
-            <span class="acc-title">Аналіз дослідження ЦА</span>
-            <i class="ti ti-chevron-down acc-arrow"></i>
+            <div class="check-dot green">✓</div>
+            <div class="acc-title-wrap">
+              <span class="acc-title">Аналіз дослідження ЦА</span>
+              <span class="acc-chevron">▾</span>
+            </div>
           </button>
           <div class="acc-body">Аналіз дослідження ЦА, з якої будуть побудовані карти сенсів (для двох цілей — школа ретуші і нові продукти), з якої просто можна взяти і реалізовувати ідеї.</div>
         </div>
 
         <div class="acc-item">
           <button class="acc-trigger" onclick="toggle(this)">
-            <div class="dot green"><i class="ti ti-check"></i></div>
-            <span class="acc-title">Карта сенсів для нових продуктів</span>
-            <i class="ti ti-chevron-down acc-arrow"></i>
+            <div class="check-dot green">✓</div>
+            <div class="acc-title-wrap">
+              <span class="acc-title">Карта сенсів для нових продуктів</span>
+              <span class="acc-chevron">▾</span>
+            </div>
           </button>
           <div class="acc-body">Карта сенсів для нових продуктів — я сама працюю в цій сфері, тому додам інформацію з власних досліджень.</div>
         </div>
 
         <div class="acc-item">
           <button class="acc-trigger" onclick="toggle(this)">
-            <div class="dot green"><i class="ti ti-check"></i></div>
-            <span class="acc-title">Контент-матриця для обох сторінок</span>
-            <i class="ti ti-chevron-down acc-arrow"></i>
+            <div class="check-dot green">✓</div>
+            <div class="acc-title-wrap">
+              <span class="acc-title">Контент-матриця для обох сторінок</span>
+              <span class="acc-chevron">▾</span>
+            </div>
           </button>
           <div class="acc-body">Контент-матриця і для особистої сторінки, і для школи з метою продавати основні продукти: рубрики, формати, логіка прогріву під кожен продукт.</div>
         </div>
 
         <div class="acc-item">
           <button class="acc-trigger" onclick="toggle(this)">
-            <div class="dot green"><i class="ti ti-check"></i></div>
-            <span class="acc-title">Візуалізація воронок</span>
-            <i class="ti ti-chevron-down acc-arrow"></i>
+            <div class="check-dot green">✓</div>
+            <div class="acc-title-wrap">
+              <span class="acc-title">Візуалізація варіантів воронок</span>
+              <span class="acc-chevron">▾</span>
+            </div>
           </button>
           <div class="acc-body">Візуалізація варіантів воронок під старі і під нові продукти. Сформую те, що вже є, і запропоную нові варіанти шляху клієнта для нових продуктів.</div>
         </div>
 
         <div class="acc-item">
           <button class="acc-trigger" onclick="toggle(this)">
-            <div class="dot green"><i class="ti ti-check"></i></div>
-            <span class="acc-title">Структура делегування</span>
-            <i class="ti ti-chevron-down acc-arrow"></i>
+            <div class="check-dot green">✓</div>
+            <div class="acc-title-wrap">
+              <span class="acc-title">Структура делегування</span>
+              <span class="acc-chevron">▾</span>
+            </div>
           </button>
           <div class="acc-body">Опис ролі контент-мейкера + робочий флоу (як передавати матеріали). Опитаю своїх колег, і якщо нікого не знайду — підготую вакансію, яку ви зможете розмістити і знайти людину самостійно.</div>
         </div>
 
         <div class="acc-item">
           <button class="acc-trigger" onclick="toggle(this)">
-            <div class="dot green"><i class="ti ti-check"></i></div>
-            <span class="acc-title">Презентаційний дзвінок</span>
-            <i class="ti ti-chevron-down acc-arrow"></i>
+            <div class="check-dot green">✓</div>
+            <div class="acc-title-wrap">
+              <span class="acc-title">Презентаційний дзвінок</span>
+              <span class="acc-chevron">▾</span>
+            </div>
           </button>
-          <div class="acc-body">Дзвінок-демонстрація стратегії з поясненням усіх деталей і як застосовувати на практиці.</div>
+          <div class="acc-body">Зідзвон-демонстрація стратегії з поясненням усіх деталей і як застосовувати на практиці.</div>
         </div>
 
         <div class="divider"></div>
-        <div class="extra-label">Формат</div>
-        <div class="format-text">Інтерактивна таблиця — все в одному місці, не треба ритись по різних папках. Можна застосовувати самостійно або передати команді.</div>
+        <div class="section-label">Формат</div>
+        <div class="format-block">Інтерактивна таблиця — все в одному місці, не треба ритись по різних папках. Можна застосовувати самостійно або передати команді.</div>
+
+        <a href="https://t.me/llanasmm" target="_blank" class="cta-btn base">
+          Обираю цей варіант →
+        </a>
       </div>
     </div>
 
+    <!-- ВАРІАНТ 2 -->
     <div class="card featured">
       <div class="card-head">
-        <span class="badge-pop">Рекомендую</span>
-        <span class="plan-icon">🌿</span>
+        <span class="plan-badge recommended">⭐ Рекомендую</span>
+        <span class="plan-emoji">🌿</span>
         <div class="plan-name">Варіант 2</div>
         <div class="plan-sub">Стратегія + контент-план</div>
-        <div class="price-row"><span class="price">$900</span></div>
-        <div class="deadline"><i class="ti ti-calendar" aria-hidden="true"></i> до 8 липня · 20 днів</div>
+        <div class="price-block">
+          <span class="price-currency">$</span>
+          <span class="price">900</span>
+        </div>
+        <div class="deadline-tag">
+          📅 до 8 липня · 20 робочих днів
+        </div>
       </div>
+
       <div class="card-body">
-        <div class="extra-label" style="margin-bottom:0.75rem;">Все з Варіанту 1, плюс:</div>
+        <div class="section-label">Все з Варіанту 1, плюс:</div>
 
         <div class="acc-item">
           <button class="acc-trigger" onclick="toggle(this)">
-            <div class="dot yellow"><i class="ti ti-plus"></i></div>
-            <span class="acc-title">Аналіз сторінок і конкурентів</span>
-            <i class="ti ti-chevron-down acc-arrow"></i>
+            <div class="check-dot yellow">+</div>
+            <div class="acc-title-wrap">
+              <span class="acc-title">Аналіз сторінок і конкурентів</span>
+              <span class="acc-chevron">▾</span>
+            </div>
           </button>
-          <div class="acc-body">Аналіз ваших сторінок та конкурентів для кращого розуміння стилю і подачі контенту, форматів що залітають. На виході — файл з пропозиціями нових форматів контенту для школи і для особистої сторінки.</div>
+          <div class="acc-body">Аналіз ваших сторінок та конкурентів для кращого розуміння стилю і подачі контенту, залітаючих форматів, а також аналіз конкурентів по їх контенту. На виході отримуєте файл з пропозиціями нових форматів контенту і для школи, і для особистої сторінки.</div>
         </div>
 
         <div class="acc-item">
           <button class="acc-trigger" onclick="toggle(this)">
-            <div class="dot yellow"><i class="ti ti-plus"></i></div>
-            <span class="acc-title">Готовий контент-план на 30 днів</span>
-            <i class="ti ti-chevron-down acc-arrow"></i>
+            <div class="check-dot yellow">+</div>
+            <div class="acc-title-wrap">
+              <span class="acc-title">Готовий контент-план на 30 днів</span>
+              <span class="acc-chevron">▾</span>
+            </div>
           </button>
           <div class="acc-body">Готовий контент-план на 30 днів, який лишиться тільки реалізувати самостійно або за допомогою контент-мейкера — для обох проєктів і суміжних постів.</div>
         </div>
 
         <div class="divider"></div>
-        <div class="extra-label">Для кого</div>
-        <div class="format-text">Якщо хочеш одразу стартувати без зайвих роздумів — план вже готовий, передай команді і вперед.</div>
+        <div class="section-label">Для кого</div>
+        <div class="format-block">Якщо хочеш одразу стартувати без зайвих роздумів — план вже готовий, передай команді і вперед. 🚀</div>
+
+        <a href="https://t.me/llanasmm" target="_blank" class="cta-btn featured-btn">
+          Обираю цей варіант →
+        </a>
       </div>
     </div>
 
   </div>
 
-  <div class="footer-note">
-    Усі матеріали будуть зібрані в одному місці — не потрібно шукати по різних папках і чатах 🍃
+  <div class="footer">
+    <span class="footer-emoji">🍃</span>
+    <strong>Усі матеріали будуть зібрані в одному місці</strong> — не потрібно шукати по різних папках і чатах.<br>
+    Є питання? Напиши в Telegram: <a href="https://t.me/llanasmm" style="color: var(--mint-dark); font-weight: 600;">@llanasmm</a>
   </div>
 </div>
 
 <script>
-function toggle(btn) {
-  const body = btn.nextElementSibling;
-  const arrow = btn.querySelector('.acc-arrow');
-  const isOpen = body.classList.contains('open');
-  body.classList.toggle('open', !isOpen);
-  arrow.classList.toggle('open', !isOpen);
-}
+  function toggle(btn) {
+    const body = btn.nextElementSibling;
+    const chevron = btn.querySelector('.acc-chevron');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    chevron.classList.toggle('open', !isOpen);
+  }
 </script>
+
+</body>
+</html>
